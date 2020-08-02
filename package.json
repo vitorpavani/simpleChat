@@ -8,7 +8,19 @@
     "nodemon": "^2.0.4",
     "socket.io": "^2.3.0"
   },
+  "success_url": "/",
+  "keywords": [
+    "node",
+    "express",
+    "socket.io",
+    "realtime",
+    "websocket"
+  ],
   "scripts": {
     "dev": "nodemon index.js"
+  },
+  "addons": [],
+  "env": {
+    "BUILDPACK_URL": "https://github.com/heroku/heroku-buildpack-nodejs"
   }
 }
