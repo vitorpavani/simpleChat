@@ -21,7 +21,6 @@ app.get("/:room", (req, res) => {
   res.render("room", { roomId: req.params.room });
 });
 
-
 io.on("connection", (socket) => {
   socket.on("join-room", (roomId, userId) => {
     socket.join(roomId);
@@ -29,11 +28,12 @@ io.on("connection", (socket) => {
     socket.on("disconnect", () => {
       socket.to(roomId).broadcast.emit("user-disconnected", userId);
     });
-    // socket.on("chat message", (msg) => {
-    //   io.emit("chat message", msg);
+  });
+  socket.on("chat message", (msg) => {
+    io.emit("chat message", msg);
   });
 });
 
-http.listen(process.env.PORT, () => {
+const listener = http.listen(process.env.PORT, () => {
   console.log(`listening on port: ${process.env.PORT}`);
 });
